@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<!-- saved from url=(0120)file:///C:/Users/BRNascimLu16/OneDrive%20-%20NESTLE/Documentos/Backup/Downloads/dot%20tehc%20day%20latest%20release.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Operations Team</title>
+    <link href="./Data Operations Team_files/css2" rel="stylesheet">
+    <script src="./Data Operations Team_files/saved_resource"></script>
+    <link rel="stylesheet" href="./Data Operations Team_files/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./photo-base64-template.css">
+    <link rel="stylesheet" href="./portfolio-carousel.css">
+    <style>
+        :root {
+          --primary: #6366f1;
+          --primary-dark: #4f46e5;
+          --secondary: #06b6d4;
+          --accent: #a855f7;
+          --dark-bg: #111827;
+          --darker-bg: #030712;
+          --text-primary: #f3f4f6;
+          --text-secondary: #9ca3af;
+          --navbar-bg: rgba(17, 24, 39, 0.7);
+          --glass-effect: blur(12px);
+          --transition-normal: all 0.3s ease;
+          --border-glow: rgba(99, 102, 241, 0.3);
+          --neon-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+          --glow-cyan: 0 0 15px rgba(6, 182, 212, 0.5);
+          --glow-indigo: 0 0 15px rgba(99, 102, 241, 0.5);
+          --glow-purple: 0 0 15px rgba(168, 85, 247, 0.5);
+          --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+          /* Variável para ajustar a transparência do vídeo */
+          --video-background-opacity: 0.3; /* Ajuste este valor entre 0 (totalmente transparente) e 1 (totalmente opaco) */
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        html {
+          scroll-behavior: smooth;
+          scroll-padding-top: 80px; /* Ajuste para a altura da navbar */
+        }
+
+        body {
+          font-family: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+          background-color: var(--darker-bg);
+          color: var(--text-primary);
+          line-height: 1.6;
+          overflow-x: hidden;
+          min-height: 100vh;
+          transition: background-color 0.5s ease;
+        }
+
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .container {
+          width: 100%;
+          max-width: none; /* Tailwind's default container max-width is removed */
+          margin: 0 auto;
+          padding: 0 1.5rem;
+        }
+
+        ::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(to bottom, var(--primary), var(--accent));
+          border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(to bottom, var(--primary-dark), var(--accent));
+        }
+
+        #navbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          backdrop-filter: var(--glass-effect);
+          -webkit-backdrop-filter: var(--glass-effect);
+          z-index: 50;
+          transition: var(--transition-normal);
+        }
+
+        #navbar.scrolled {
+          background-color: rgba(17, 24, 39, 0.9);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+          display: flex;
+          align-items: center;
+        }
+
+        .nav-link {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background: linear-gradient(to right, rgb(6, 182, 212), rgb(99, 102, 241));
+          transition: width 0.3s ease;
+          transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+          width: 80%;
+        }
+
+        .nav-link:hover {
+          text-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+        }
+
+        #mobile-menu {
+          overflow: hidden;
+        }
+
+        #mobile-menu.open {
+        }
+
+        #mobile-menu-button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+        }
+
+        #mobile-menu-button.active #line1 {
+          transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        #mobile-menu-button.active #line2 {
+          opacity: 0;
+        }
+
+        #mobile-menu-button.active #line3 {
+          transform: rotate(-45deg) translate(4px, -4px);
+        }
+
+        #line1, #line2, #line3 {
+          transition: transform 0.3s ease, opacity 0.2s ease, background-color 0.3s ease;
+          transform-origin: center;
+        }
+
+        section {
+          display: flex;
+          align-items: center;
+          position: relative; /* Necessário para posicionar o vídeo absolutamente dentro */
+          overflow: hidden; /* Esconde partes do vídeo que possam vazar */
+          margin: 0; /* Remove any gap between sections */
+        }
+
+        /* Full viewport height only for hero and about */
+        #home,
+        #about {
+          min-height: 100vh;
+        }
+
+        /* Estilos para o vídeo de fundo */
+        #home video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que o vídeo cubra a área sem distorção */
+            z-index: -1; /* Coloca o vídeo atrás do conteúdo */
+            opacity: var(--video-background-opacity); /* Aplica a transparência */
+        }
+
+
+        section:first-of-type {
+        }
+
+        .gradient-text {
+          background: linear-gradient(to right, var(--primary), var(--secondary), var(--accent));
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+
+        .glow-effect {
+          position: relative;
+        }
+
+        .glow-effect:before {
+          content: '';
+          position: absolute;
+          inset: -5px;
+          background: linear-gradient(to right, var(--primary), var(--accent));
+          border-radius: inherit;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          z-index: -1;
+          filter: blur(8px);
+        }
+
+        .glow-effect:hover:before {
+          opacity: 1;
+        }
+
+        .btn {
+          display: inline-block;
+          padding: 0.75rem 1.5rem;
+          border-radius: 0.5rem;
+          font-weight: 500;
+          transition: var(--transition-normal);
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* O estilo .contact-btn agora se aplica ao <a> com essa classe */
+        .contact-btn {
+          position: relative;
+          overflow: hidden;
+          display: inline-flex; /* Garante que o <a> se comporte como um flex container */
+          align-items: center; /* Centraliza o conteúdo dentro do <a> */
+          justify-content: center;
+        }
+
+        .contact-btn::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(
+            45deg,
+            transparent 40%,
+            rgba(6, 182, 212, 0.2) 45%,
+            rgba(6, 182, 212, 0.4) 50%,
+            rgba(6, 182, 212, 0.2) 55%,
+            transparent 60%
+          );
+          transition: transform 0.5s ease;
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+
+        .contact-btn:hover::before {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes pulse {
+          0% { opacity: 0; }
+          50% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+
+        .card {
+          background-color: rgba(17, 24, 39, 0.7);
+          backdrop-filter: var(--glass-effect);
+          border: 1px solid var(--border-glow);
+          border-radius: 0.75rem;
+          padding: 1.5rem;
+          transition: var(--transition-normal);
+        }
+
+        @media (max-width: 767px) {
+          section {
+          }
+          .container {
+          }
+          #navbar {
+          }
+          .nav-link::after {
+            display: none;
+          }
+        }
+
+        .section-hidden {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .section-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .section-highlight {
+          position: relative;
+        }
+
+        .section-highlight::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(circle at center, rgba(6, 182, 212, 0.1), transparent 70%);
+          opacity: 0;
+          animation: pulse 1s ease;
+          pointer-events: none;
+          z-index: -1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+          }
+        }
+
+        a:focus, button:focus, input:focus, textarea:focus {
+          outline: 2px solid rgba(6, 182, 212, 0.5);
+          outline-offset: 2px;
+        }
+
+        .services-swiper .swiper-pagination-bullet {
+            background-color: #67e8f9;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        .services-swiper .swiper-pagination-bullet-active {
+            background-color: #06b6d4;
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        .services-swiper .swiper-button-next,
+        .services-swiper .swiper-button-prev {
+            color: #22d3ee;
+            transition: color 0.3s ease, transform 0.3s ease;
+            --swiper-navigation-size: 30px;
+        }
+        .services-swiper .swiper-button-next:hover,
+        .services-swiper .swiper-button-prev:hover {
+            color: #67e8f9;
+            transform: scale(1.1);
+        }
+        .services-swiper .swiper-button-disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .swiper-slide {
+             height: auto !important;
+             display: flex;
+        }
+        .swiper-slide > div.relative.group {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .swiper-slide .bg-gradient-to-br {
+            flex-grow: 1;
+        }
+
+        section#about {
+            position: relative;
+            overflow: hidden;
+        }
+
+        section#about .photo-container {
+            position: absolute;
+            width: 160%;
+            height: 160%;
+            top: -30%;
+            left: -30%;
+            transform: rotate(15deg);
+            transform-origin: center center;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        section#about .photo-cont-item {
+            display: flex;
+            will-change: transform;
+        }
+
+        section#about .photo-cont-item .photo-item {
+            width: 320px;
+            height: 200px;
+            margin-right: 60px;
+            margin-bottom: 60px;
+            border-radius: 16px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        section#about .animation-1 { animation: scroller 40s linear infinite; width: calc((320px + 60px) * 12); }
+        section#about .animation-2 { animation: scroller 30s linear infinite; width: calc((320px + 60px) * 12); }
+        section#about .animation-3 { animation: scroller 50s linear infinite; width: calc((320px + 60px) * 12); }
+
+        @keyframes scroller {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc((-320px - 60px) * 6)); }
+        }
+
+        section#about .about-blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(3, 7, 18, 0.6);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 5;
+            pointer-events: none;
+        }
+        /* Base64 photo classes moved to photo-base64-template.css */
+
+        /* ===== Animated Rainbow Border Effect for Contact Button ===== */
+        .contact-btn-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-btn-border {
+            position: absolute;
+            inset: -2px;
+            border-radius: 0.5rem; /* rounded-lg */
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .contact-btn-border::after {
+            content: '';
+            position: absolute;
+            width: 400%;
+            height: 400%;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            background: conic-gradient(
+                from 0deg,
+                #22d3ee,         /* cyan-400 */
+                #06b6d4 12%,     /* cyan-500 */
+                #3b82f6 25%,     /* blue-500 */
+                #6366f1 37%,     /* indigo-500 */
+                #818cf8 50%,     /* indigo-400 */
+                #a78bfa 62%,     /* violet-400 */
+                #c084fc 75%,     /* purple-400 */
+                #d946ef 87%,     /* fuchsia-500 */
+                #22d3ee 100%     /* cyan-400 - fecha o loop */
+            );
+            animation: spin-border 3s linear infinite;
+            z-index: -1;
+        }
+
+        /* Mask to show only the border */
+        .contact-btn-border {
+            mask: linear-gradient(#fff 0 0) padding-box, 
+                  linear-gradient(#fff 0 0) border-box;
+            mask-composite: exclude;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, 
+                          linear-gradient(#fff 0 0) border-box;
+            -webkit-mask-composite: xor;
+            border: 2px solid transparent;
+        }
+
+        @keyframes spin-border {
+            to {
+                rotate: 360deg;
+            }
+        }
+
+        /* Ensure contact button stays above the border */
+        .contact-btn-wrapper .contact-btn {
+            position: relative;
+            z-index: 1;
+        }
+ 
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.-inset-0\.5{inset:-0.125rem}.inset-0{inset:0px}.bottom-10{bottom:2.5rem}.left-0{left:0px}.left-1\/2{left:50%}.left-10{left:2.5rem}.right-0{right:0px}.right-10{right:2.5rem}.right-20{right:5rem}.top-0{top:0px}.top-1\/2{top:50%}.top-20{top:5rem}.top-40{top:10rem}.z-0{z-index:0}.z-10{z-index:10}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-8{margin-bottom:2rem}.ml-4{margin-left:1rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-1{margin-top:0.25rem}.mt-4{margin-top:1rem}.mb-6{margin-bottom:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-video{aspect-ratio:16 / 9}.h-0{height:0px}.h-0\.5{height:0.125rem}.h-1{height:0.25rem}.h-10{height:2.5rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-80{height:20rem}.h-96{height:24rem}.h-auto{height:auto}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-20{width:5rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-64{width:16rem}.w-72{width:18rem}.w-80{width:20rem}.w-96{width:24rem}.w-auto{width:auto}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.flex-shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-0\.5{--tw-translate-y:-0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-\[6px\]{--tw-translate-y:-6px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-8{--tw-translate-y:2rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-\[5px\]{--tw-translate-y:5px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}.resize-none{resize:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.grid-rows-12{grid-template-rows:repeat(12, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-1 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.25rem * var(--tw-space-x-reverse));margin-left:calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-hidden{overflow-x:hidden}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-cyan-500{--tw-border-opacity:1;border-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.border-cyan-500\/20{border-color:rgb(6 182 212 / 0.2)}.border-cyan-500\/30{border-color:rgb(6 182 212 / 0.3)}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.border-indigo-500\/20{border-color:rgb(99 102 241 / 0.2)}.border-purple-500\/20{border-color:rgb(168 85 247 / 0.2)}.border-teal-500\/20{border-color:rgb(20 184 166 / 0.2)}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-cyan-400{--tw-bg-opacity:1;background-color:rgb(34 211 238 / var(--tw-bg-opacity, 1))}.bg-cyan-500\/20{background-color:rgb(6 182 212 / 0.2)}.bg-cyan-500\/5{background-color:rgb(6 182 212 / 0.05)}.bg-cyan-900\/10{background-color:rgb(22 78 99 / 0.1)}.bg-cyan-900\/60{background-color:rgb(22 78 99 / 0.6)}.bg-gray-800\/50{background-color:rgb(31 41 55 / 0.5)}.bg-gray-900\/50{background-color:rgb(17 24 39 / 0.5)}.bg-gray-900\/70{background-color:rgb(17 24 39 / 0.7)}.bg-indigo-500\/20{background-color:rgb(99 102 241 / 0.2)}.bg-indigo-500\/5{background-color:rgb(99 102 241 / 0.05)}.bg-indigo-900\/10{background-color:rgb(49 46 129 / 0.1)}.bg-indigo-900\/60{background-color:rgb(49 46 129 / 0.6)}.bg-purple-500\/5{background-color:rgb(168 85 247 / 0.05)}.bg-purple-900\/10{background-color:rgb(88 28 135 / 0.1)}.bg-purple-900\/60{background-color:rgb(88 28 135 / 0.6)}.bg-teal-500\/5{background-color:rgb(20 184 166 / 0.05)}.bg-teal-900\/60{background-color:rgb(19 78 74 / 0.6)}.bg-transparent{background-color:transparent}.bg-gray-900\/80{background-color:rgb(17 24 39 / 0.8)}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-cyan-300{--tw-gradient-from:#67e8f9 var(--tw-gradient-from-position);--tw-gradient-to:rgb(103 232 249 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-cyan-500{--tw-gradient-from:#06b6d4 var(--tw-gradient-from-position);--tw-gradient-to:rgb(6 182 212 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-cyan-600\/80{--tw-gradient-from:rgb(8 145 178 / 0.8) var(--tw-gradient-from-position);--tw-gradient-to:rgb(8 145 178 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-gray-700{--tw-gradient-from:#374151 var(--tw-gradient-from-position);--tw-gradient-to:rgb(55 65 81 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-gray-900{--tw-gradient-from:#111827 var(--tw-gradient-from-position);--tw-gradient-to:rgb(17 24 39 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-400{--tw-gradient-from:#818cf8 var(--tw-gradient-from-position);--tw-gradient-to:rgb(129 140 248 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-600\/50{--tw-gradient-from:rgb(79 70 229 / 0.5) var(--tw-gradient-from-position);--tw-gradient-to:rgb(79 70 229 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-600\/80{--tw-gradient-from:rgb(79 70 229 / 0.8) var(--tw-gradient-from-position);--tw-gradient-to:rgb(79 70 229 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-700{--tw-gradient-from:#4338ca var(--tw-gradient-from-position);--tw-gradient-to:rgb(67 56 202 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-900\/90{--tw-gradient-from:rgb(49 46 129 / 0.9) var(--tw-gradient-from-position);--tw-gradient-to:rgb(49 46 129 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-purple-500\/20{--tw-gradient-from:rgb(168 85 247 / 0.2) var(--tw-gradient-from-position);--tw-gradient-to:rgb(168 85 247 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-purple-600\/80{--tw-gradient-from:rgb(147 51 234 / 0.8) var(--tw-gradient-from-position);--tw-gradient-to:rgb(147 51 234 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-cyan-400{--tw-gradient-to:rgb(34 211 238 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #22d3ee var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-blue-600\/80{--tw-gradient-to:rgb(37 99 235 / 0.8) var(--tw-gradient-to-position)}.to-cyan-500\/20{--tw-gradient-to:rgb(6 182 212 / 0.2) var(--tw-gradient-to-position)}.to-gray-900{--tw-gradient-to:#111827 var(--tw-gradient-to-position)}.to-gray-950{--tw-gradient-to:#030712 var(--tw-gradient-to-position)}.to-indigo-300{--tw-gradient-to:#a5b4fc var(--tw-gradient-to-position)}.to-indigo-500{--tw-gradient-to:#6366f1 var(--tw-gradient-to-position)}.to-indigo-600\/80{--tw-gradient-to:rgb(79 70 229 / 0.8) var(--tw-gradient-to-position)}.to-pink-600\/80{--tw-gradient-to:rgb(219 39 119 / 0.8) var(--tw-gradient-to-position)}.to-purple-400{--tw-gradient-to:#c084fc var(--tw-gradient-to-position)}.to-purple-500\/20{--tw-gradient-to:rgb(168 85 247 / 0.2) var(--tw-gradient-to-position)}.to-purple-600\/50{--tw-gradient-to:rgb(147 51 234 / 0.5) var(--tw-gradient-to-position)}.to-purple-600\/80{--tw-gradient-to:rgb(147 51 234 / 0.8) var(--tw-gradient-to-position)}.to-purple-700{--tw-gradient-to:#7e22ce var(--tw-gradient-to-position)}.to-purple-900\/90{--tw-gradient-to:rgb(88 28 135 / 0.9) var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-12{padding-bottom:3rem}.pb-2{padding-bottom:0.5rem}.pb-4{padding-bottom:1rem}.pt-2{padding-top:0.5rem}.pt-20{padding-top:5rem}.text-center{text-align:center}.font-\[\'Space_Grotesk\'\]{font-family:'Space Grotesk'}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-6xl{font-size:3.75rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tracking-widest{letter-spacing:0.1em}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249 / var(--tw-text-opacity, 1))}.text-cyan-400{--tw-text-opacity:1;color:rgb(34 211 238 / var(--tw-text-opacity, 1))}.text-gray-200{--tw-text-opacity:1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-indigo-300{--tw-text-opacity:1;color:rgb(165 180 252 / var(--tw-text-opacity, 1))}.text-purple-300{--tw-text-opacity:1;color:rgb(216 180 254 / var(--tw-text-opacity, 1))}.text-teal-300{--tw-text-opacity:1;color:rgb(94 234 212 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.opacity-0{opacity:0}.opacity-5{opacity:0.05}.opacity-75{opacity:0.75}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.blur{--tw-blur:blur(8px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-sm{--tw-blur:blur(4px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-lg{--tw-backdrop-blur:blur(16px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.hover\:border-cyan-500\/50:hover{border-color:rgb(6 182 212 / 0.5)}.hover\:bg-cyan-900\/10:hover{background-color:rgb(22 78 99 / 0.1)}.hover\:bg-gray-800\/50:hover{background-color:rgb(31 41 55 / 0.5)}.hover\:from-indigo-600:hover{--tw-gradient-from:#4f46e5 var(--tw-gradient-from-position);--tw-gradient-to:rgb(79 70 229 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-purple-600:hover{--tw-gradient-to:#9333ea var(--tw-gradient-to-position)}.hover\:text-cyan-400:hover{--tw-text-opacity:1;color:rgb(34 211 238 / var(--tw-text-opacity, 1))}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-cyan-500:focus{--tw-border-opacity:1;border-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-1:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-cyan-500\/50:focus{--tw-ring-color:rgb(6 182 212 / 0.5)}.group:hover .group-hover\:translate-y-0{--tw-translate-y:0px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:border-cyan-500\/40{border-color:rgb(6 182 212 / 0.4)}.group:hover .group-hover\:border-indigo-500\/40{border-color:rgb(99 102 241 / 0.4)}.group:hover .group-hover\:border-purple-500\/40{border-color:rgb(168 85 247 / 0.4)}.group:hover .group-hover\:border-teal-500\/40{border-color:rgb(20 184 166 / 0.4)}.group:hover .group-hover\:bg-cyan-800\/70{background-color:rgb(21 94 117 / 0.7)}.group:hover .group-hover\:bg-indigo-500\/30{background-color:rgb(99 102 241 / 0.3)}.group:hover .group-hover\:bg-indigo-800\/70{background-color:rgb(55 48 163 / 0.7)}.group:hover .group-hover\:bg-purple-500\/30{background-color:rgb(168 85 247 / 0.3)}.group:hover .group-hover\:bg-purple-800\/70{background-color:rgb(107 33 168 / 0.7)}.group:hover .group-hover\:bg-teal-800\/70{background-color:rgb(17 94 89 / 0.7)}.group:hover .group-hover\:from-indigo-800\/90{--tw-gradient-from:rgb(55 48 163 / 0.9) var(--tw-gradient-from-position);--tw-gradient-to:rgb(55 48 163 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.group:hover .group-hover\:to-purple-800\/90{--tw-gradient-to:rgb(107 33 168 / 0.9) var(--tw-gradient-to-position)}.group:hover .group-hover\:text-cyan-200{--tw-text-opacity:1;color:rgb(165 243 252 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-indigo-200{--tw-text-opacity:1;color:rgb(199 210 254 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-purple-200{--tw-text-opacity:1;color:rgb(233 213 255 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-teal-200{--tw-text-opacity:1;color:rgb(153 246 228 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:opacity-100{opacity:1}.group:hover .group-hover\:opacity-90{opacity:0.9}.group:active .group-active\:scale-95{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 768px){.md\:col-span-2{grid-column:span 2 / span 2}.md\:col-span-3{grid-column:span 3 / span 3}.md\:mb-0{margin-bottom:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:border-b{border-bottom-width:1px}.md\:border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.md\:pb-8{padding-bottom:2rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-7xl{font-size:4.5rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:border-b-0{border-bottom-width:0px}.lg\:border-r{border-right-width:1px}.lg\:border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.lg\:pb-0{padding-bottom:0px}.lg\:text-8xl{font-size:6rem;line-height:1}}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.-inset-0\.5{inset:-0.125rem}.inset-0{inset:0px}.bottom-10{bottom:2.5rem}.left-0{left:0px}.left-1\/2{left:50%}.left-10{left:2.5rem}.right-0{right:0px}.right-10{right:2.5rem}.right-20{right:5rem}.top-0{top:0px}.top-1\/2{top:50%}.top-20{top:5rem}.top-40{top:10rem}.z-0{z-index:0}.z-10{z-index:10}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-4{margin-left:1rem}.mr-2{margin-right:0.5rem}.mr-3{margin-right:0.75rem}.mt-1{margin-top:0.25rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-video{aspect-ratio:16 / 9}.h-0{height:0px}.h-0\.5{height:0.125rem}.h-1{height:0.25rem}.h-10{height:2.5rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-80{height:20rem}.h-96{height:24rem}.h-auto{height:auto}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-20{width:5rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-64{width:16rem}.w-72{width:18rem}.w-80{width:20rem}.w-96{width:24rem}.w-auto{width:auto}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.flex-shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-0\.5{--tw-translate-y:-0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-\[6px\]{--tw-translate-y:-6px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-8{--tw-translate-y:2rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-\[5px\]{--tw-translate-y:5px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}.resize-none{resize:none}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.grid-rows-12{grid-template-rows:repeat(12, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:0.5rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-x-1 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.25rem * var(--tw-space-x-reverse));margin-left:calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-hidden{overflow-x:hidden}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-cyan-500{--tw-border-opacity:1;border-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.border-cyan-500\/20{border-color:rgb(6 182 212 / 0.2)}.border-cyan-500\/30{border-color:rgb(6 182 212 / 0.3)}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.border-indigo-500\/20{border-color:rgb(99 102 241 / 0.2)}.border-purple-500\/20{border-color:rgb(168 85 247 / 0.2)}.border-teal-500\/20{border-color:rgb(20 184 166 / 0.2)}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-cyan-400{--tw-bg-opacity:1;background-color:rgb(34 211 238 / var(--tw-bg-opacity, 1))}.bg-cyan-500\/20{background-color:rgb(6 182 212 / 0.2)}.bg-cyan-500\/5{background-color:rgb(6 182 212 / 0.05)}.bg-cyan-900\/10{background-color:rgb(22 78 99 / 0.1)}.bg-cyan-900\/60{background-color:rgb(22 78 99 / 0.6)}.bg-gray-800\/50{background-color:rgb(31 41 55 / 0.5)}.bg-gray-900\/50{background-color:rgb(17 24 39 / 0.5)}.bg-gray-900\/70{background-color:rgb(17 24 39 / 0.7)}.bg-gray-900\/80{background-color:rgb(17 24 39 / 0.8)}.bg-indigo-500\/20{background-color:rgb(99 102 241 / 0.2)}.bg-indigo-500\/5{background-color:rgb(99 102 241 / 0.05)}.bg-indigo-900\/10{background-color:rgb(49 46 129 / 0.1)}.bg-indigo-900\/60{background-color:rgb(49 46 129 / 0.6)}.bg-purple-500\/5{background-color:rgb(168 85 247 / 0.05)}.bg-purple-900\/10{background-color:rgb(88 28 135 / 0.1)}.bg-purple-900\/60{background-color:rgb(88 28 135 / 0.6)}.bg-teal-500\/5{background-color:rgb(20 184 166 / 0.05)}.bg-teal-900\/60{background-color:rgb(19 78 74 / 0.6)}.bg-transparent{background-color:transparent}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-cyan-300{--tw-gradient-from:#67e8f9 var(--tw-gradient-from-position);--tw-gradient-to:rgb(103 232 249 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-cyan-500{--tw-gradient-from:#06b6d4 var(--tw-gradient-from-position);--tw-gradient-to:rgb(6 182 212 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-cyan-600\/80{--tw-gradient-from:rgb(8 145 178 / 0.8) var(--tw-gradient-from-position);--tw-gradient-to:rgb(8 145 178 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-gray-700{--tw-gradient-from:#374151 var(--tw-gradient-from-position);--tw-gradient-to:rgb(55 65 81 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-gray-900{--tw-gradient-from:#111827 var(--tw-gradient-from-position);--tw-gradient-to:rgb(17 24 39 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-400{--tw-gradient-from:#818cf8 var(--tw-gradient-from-position);--tw-gradient-to:rgb(129 140 248 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-600\/50{--tw-gradient-from:rgb(79 70 229 / 0.5) var(--tw-gradient-from-position);--tw-gradient-to:rgb(79 70 229 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-600\/80{--tw-gradient-from:rgb(79 70 229 / 0.8) var(--tw-gradient-from-position);--tw-gradient-to:rgb(79 70 229 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-700{--tw-gradient-from:#4338ca var(--tw-gradient-from-position);--tw-gradient-to:rgb(67 56 202 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-indigo-900\/90{--tw-gradient-from:rgb(49 46 129 / 0.9) var(--tw-gradient-from-position);--tw-gradient-to:rgb(49 46 129 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-purple-500\/20{--tw-gradient-from:rgb(168 85 247 / 0.2) var(--tw-gradient-from-position);--tw-gradient-to:rgb(168 85 247 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-purple-600\/80{--tw-gradient-from:rgb(147 51 234 / 0.8) var(--tw-gradient-from-position);--tw-gradient-to:rgb(147 51 234 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-cyan-400{--tw-gradient-to:rgb(34 211 238 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #22d3ee var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-blue-600\/80{--tw-gradient-to:rgb(37 99 235 / 0.8) var(--tw-gradient-to-position)}.to-cyan-500\/20{--tw-gradient-to:rgb(6 182 212 / 0.2) var(--tw-gradient-to-position)}.to-gray-900{--tw-gradient-to:#111827 var(--tw-gradient-to-position)}.to-gray-950{--tw-gradient-to:#030712 var(--tw-gradient-to-position)}.to-indigo-300{--tw-gradient-to:#a5b4fc var(--tw-gradient-to-position)}.to-indigo-500{--tw-gradient-to:#6366f1 var(--tw-gradient-to-position)}.to-indigo-600\/80{--tw-gradient-to:rgb(79 70 229 / 0.8) var(--tw-gradient-to-position)}.to-pink-600\/80{--tw-gradient-to:rgb(219 39 119 / 0.8) var(--tw-gradient-to-position)}.to-purple-400{--tw-gradient-to:#c084fc var(--tw-gradient-to-position)}.to-purple-500\/20{--tw-gradient-to:rgb(168 85 247 / 0.2) var(--tw-gradient-to-position)}.to-purple-600\/50{--tw-gradient-to:rgb(147 51 234 / 0.5) var(--tw-gradient-to-position)}.to-purple-600\/80{--tw-gradient-to:rgb(147 51 234 / 0.8) var(--tw-gradient-to-position)}.to-purple-700{--tw-gradient-to:#7e22ce var(--tw-gradient-to-position)}.to-purple-900\/90{--tw-gradient-to:rgb(88 28 135 / 0.9) var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-12{padding-bottom:3rem}.pb-2{padding-bottom:0.5rem}.pb-4{padding-bottom:1rem}.pt-2{padding-top:0.5rem}.pt-20{padding-top:5rem}.text-center{text-align:center}.font-\[\'Space_Grotesk\'\]{font-family:'Space Grotesk'}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-6xl{font-size:3.75rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tracking-widest{letter-spacing:0.1em}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-cyan-300{--tw-text-opacity:1;color:rgb(103 232 249 / var(--tw-text-opacity, 1))}.text-cyan-400{--tw-text-opacity:1;color:rgb(34 211 238 / var(--tw-text-opacity, 1))}.text-gray-200{--tw-text-opacity:1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-indigo-300{--tw-text-opacity:1;color:rgb(165 180 252 / var(--tw-text-opacity, 1))}.text-purple-300{--tw-text-opacity:1;color:rgb(216 180 254 / var(--tw-text-opacity, 1))}.text-teal-300{--tw-text-opacity:1;color:rgb(94 234 212 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.opacity-0{opacity:0}.opacity-5{opacity:0.05}.opacity-75{opacity:0.75}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.blur{--tw-blur:blur(8px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-sm{--tw-blur:blur(4px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-lg{--tw-backdrop-blur:blur(16px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.hover\:border-cyan-500\/50:hover{border-color:rgb(6 182 212 / 0.5)}.hover\:bg-cyan-900\/10:hover{background-color:rgb(22 78 99 / 0.1)}.hover\:bg-gray-800\/50:hover{background-color:rgb(31 41 55 / 0.5)}.hover\:from-indigo-600:hover{--tw-gradient-from:#4f46e5 var(--tw-gradient-from-position);--tw-gradient-to:rgb(79 70 229 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-purple-600:hover{--tw-gradient-to:#9333ea var(--tw-gradient-to-position)}.hover\:text-cyan-400:hover{--tw-text-opacity:1;color:rgb(34 211 238 / var(--tw-text-opacity, 1))}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-cyan-500:focus{--tw-border-opacity:1;border-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-1:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-cyan-500\/50:focus{--tw-ring-color:rgb(6 182 212 / 0.5)}.group:hover .group-hover\:translate-y-0{--tw-translate-y:0px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:border-cyan-500\/40{border-color:rgb(6 182 212 / 0.4)}.group:hover .group-hover\:border-indigo-500\/40{border-color:rgb(99 102 241 / 0.4)}.group:hover .group-hover\:border-purple-500\/40{border-color:rgb(168 85 247 / 0.4)}.group:hover .group-hover\:border-teal-500\/40{border-color:rgb(20 184 166 / 0.4)}.group:hover .group-hover\:bg-cyan-800\/70{background-color:rgb(21 94 117 / 0.7)}.group:hover .group-hover\:bg-indigo-500\/30{background-color:rgb(99 102 241 / 0.3)}.group:hover .group-hover\:bg-indigo-800\/70{background-color:rgb(55 48 163 / 0.7)}.group:hover .group-hover\:bg-purple-500\/30{background-color:rgb(168 85 247 / 0.3)}.group:hover .group-hover\:bg-purple-800\/70{background-color:rgb(107 33 168 / 0.7)}.group:hover .group-hover\:bg-teal-800\/70{background-color:rgb(17 94 89 / 0.7)}.group:hover .group-hover\:from-indigo-800\/90{--tw-gradient-from:rgb(55 48 163 / 0.9) var(--tw-gradient-from-position);--tw-gradient-to:rgb(55 48 163 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.group:hover .group-hover\:to-purple-800\/90{--tw-gradient-to:rgb(107 33 168 / 0.9) var(--tw-gradient-to-position)}.group:hover .group-hover\:text-cyan-200{--tw-text-opacity:1;color:rgb(165 243 252 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-indigo-200{--tw-text-opacity:1;color:rgb(199 210 254 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-purple-200{--tw-text-opacity:1;color:rgb(233 213 255 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-teal-200{--tw-text-opacity:1;color:rgb(153 246 228 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:opacity-100{opacity:1}.group:hover .group-hover\:opacity-90{opacity:0.9}.group:active .group-active\:scale-95{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 768px){.md\:col-span-2{grid-column:span 2 / span 2}.md\:col-span-3{grid-column:span 3 / span 3}.md\:mb-0{margin-bottom:0px}.md\:flex{display:flex}.md\:hidden{display:none}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:border-b{border-bottom-width:1px}.md\:border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.md\:pb-8{padding-bottom:2rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-7xl{font-size:4.5rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:border-b-0{border-bottom-width:0px}.lg\:border-r{border-right-width:1px}.lg\:border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.lg\:pb-0{padding-bottom:0px}.lg\:text-8xl{font-size:6rem;line-height:1}}</style></head>
+<body class="bg-black text-white overflow-x-hidden">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-20 left-10 w-96 h-96 bg-indigo-900/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-purple-900/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-40 right-20 w-64 h-64 bg-cyan-900/10 rounded-full blur-3xl"></div>
+
+        <div class="absolute inset-0 grid grid-cols-12 opacity-5 pointer-events-none">
+            <div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div><div class="border-r border-cyan-500"></div>
+        </div>
+        <div class="absolute inset-0 grid grid-rows-12 opacity-5 pointer-events-none">
+            <div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div><div class="border-b border-cyan-500"></div>
+        </div>
+    </div>
+
+    <nav id="navbar" class="fixed top-0 left-0 right-0 bg-gray-900/70 backdrop-blur-lg border-b border-cyan-500/30 z-50 transition-all duration-300 scrolled">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo Placeholder -->
+                <div class="flex items-center">
+                    <!-- Replace the src attribute with your SVG logo link -->
+                    <img src="./Data Operations Team_files/6drp9s.svg" alt="Company Logo" class="h-10 w-auto mr-2">
+                </div>
+                <!-- Fim Logo Placeholder -->
+
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#home" class="nav-link hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200 text-gray-300">Home</a>
+                    <a href="#portfolio" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">Projects</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">About</a>
+                    <a href="#services" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">Services</a>
+                    <a href="#testimonials" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">Testimonials</a>
+                    <!-- REMOVIDO: <a href="#contact" class="nav-link text-gray-300 hover:text-cyan-400 px-4 py-2 rounded-md transition-colors duration-200">Contact</a> -->
+                    <div class="relative ml-4 group">
+                        <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-600/50 to-purple-600/50 rounded-lg blur opacity-75 group-hover:opacity-100 transition-all duration-500"></div>
+                        <!-- BOTÃO COM BORDA ANIMADA -->
+                        <div class="contact-btn-wrapper">
+                            <div class="contact-btn-border"></div>
+                            <a href="#contact" class="contact-btn px-4 py-2 bg-gradient-to-r from-indigo-900/90 to-purple-900/90 rounded-lg text-white text-sm font-medium relative z-10 gap-2 group-hover:from-indigo-800/90 group-hover:to-purple-800/90 transition-all duration-300">
+                                <span class="bg-gradient-to-r from-cyan-300 to-indigo-300 bg-clip-text text-transparent">Contact</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-button" class="relative w-10 h-10 focus:outline-none group" aria-label="Toggle menu">
+                        <span class="block absolute h-0.5 w-5 bg-cyan-400 transform transition duration-300 ease-in-out top-1/2 left-1/2 -translate-x-1/2 -translate-y-[6px]" id="line1"></span>
+                        <span class="block absolute h-0.5 w-5 bg-cyan-400 transform transition duration-300 ease-in-out top-1/2 left-1/2 -translate-x-1/2 -translate-y-0.5" id="line2"></span>
+                        <span class="block absolute h-0.5 w-5 bg-cyan-400 transform transition duration-300 ease-in-out top-1/2 left-1/2 -translate-x-1/2 translate-y-[5px]" id="line3"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="md:hidden h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="pt-2 pb-4 space-y-1">
+                    <a href="#home" class="mobile-nav-link block hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200 text-gray-300">Home</a>
+                    <a href="#portfolio" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">Portfolio</a>
+                    <a href="#about" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">About</a>
+                    <a href="#services" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">Services</a>
+                    <a href="#testimonials" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">Testimonials</a>
+                    <a href="#contact" class="mobile-nav-link block text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50 px-4 py-2 rounded-md transition-colors duration-200">Contact</a>
+                    <div class="px-4 pt-2">
+                        <!-- BOTÃO MOBILE MENU NÃO SOLICITADO PARA ALTERAÇÃO -->
+                        <button class="contact-btn w-full px-4 py-2 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-lg text-white text-sm font-medium flex items-center justify-center gap-2 hover:from-indigo-600 hover:to-purple-600 transition-all duration-300">
+                            <span class="bg-gradient-to-r from-cyan-300 to-indigo-300 bg-clip-text text-transparent">Connect</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="min-h-screen flex items-center justify-center relative pt-20 section-visible">
+            <!-- Vídeo de Fundo -->
+            <video autoplay="" loop="" muted="" playsinline="">
+                <source src="https://files.catbox.moe/l3rh9v.webm" type="video/webm">
+                <!-- Fallback para navegadores que não suportam o formato -->
+                Seu navegador não suporta vídeos em HTML5.
+            </video>
+
+            <div class="container mx-auto px-6 py-20 relative z-10"> <!-- Adicionado z-index para garantir que o conteúdo fique acima do vídeo -->
+                <div class="flex flex-col items-center text-center">
+
+                    <!-- SVG Logo já existente -->
+                    <img src="./Data Operations Team_files/dzihdw.svg" alt="Logo Data Operations Team" class="w-72 h-auto mx-auto mb-8">
+                    <!-- FIM DO SVG INSERIDO -->
+
+                    <div class="relative mb-4">
+                        <div class="absolute inset-0 bg-cyan-500/20 rounded-full blur-3xl"></div>
+                        <div class="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-indigo-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent pb-2 relative" style="opacity: 1; transform: translateY(0px);">
+                            Power Your Insights
+                        </div>
+                    </div>
+                    <p class="text-xl md:text-2xl text-gray-400 max-w-3xl mb-8">
+                        Turn your data into valuable decisions!
+                    </p>
+                    <div class="flex gap-4 flex-wrap justify-center">
+                        <div class="relative group">
+                            <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-600/50 to-purple-600/50 rounded-lg blur opacity-75 group-hover:opacity-100 transition-all duration-500"></div>
+                            <!-- BOTÃO COM BORDA ANIMADA -->
+                            <div class="contact-btn-wrapper">
+                                <div class="contact-btn-border"></div>
+                                <a href="#contact" class="contact-btn px-6 py-3 bg-gradient-to-r from-indigo-900/90 to-purple-900/90 rounded-lg text-white text-base font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-indigo-800/90 group-hover:to-purple-800/90 transition-all duration-300 transform group-hover:scale-105 group-active:scale-95">
+                                    <span class="bg-gradient-to-r from-cyan-300 to-indigo-300 bg-clip-text text-transparent">Contact</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Botão Learn More agora é um link para a próxima seção -->
+                        <a href="#portfolio" class="px-6 py-3 bg-transparent border border-cyan-500/30 rounded-lg text-cyan-400 text-base font-medium flex items-center justify-center gap-2 hover:bg-cyan-900/10 hover:border-cyan-500/50 transition-all duration-300">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Seta para baixo agora é um link para a próxima seção -->
+            <a href="#portfolio" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </section>
+
+
+
+<section id="about" class="min-h-screen flex items-center relative py-20 overflow-hidden section-visible">
+            <div class="photo-container">
+                <div class="photo-cont-item animation-1">
+                    <div class="photo-item photo-1"></div> <div class="photo-item photo-2"></div> <div class="photo-item photo-3"></div>
+                    <div class="photo-item photo-4"></div> <div class="photo-item photo-5"></div> <div class="photo-item photo-6"></div>
+                    <div class="photo-item photo-1"></div> <div class="photo-item photo-2"></div> <div class="photo-item photo-3"></div>
+                    <div class="photo-item photo-4"></div> <div class="photo-item photo-5"></div> <div class="photo-item photo-6"></div>
+                </div>
+                <div class="photo-cont-item animation-2" style="margin-left: 150px;">
+                    <div class="photo-item photo-7"></div> <div class="photo-item photo-8"></div> <div class="photo-item photo-9"></div>
+                    <div class="photo-item photo-10"></div> <div class="photo-item photo-11"></div> <div class="photo-item photo-12"></div>
+                    <div class="photo-item photo-7"></div> <div class="photo-item photo-8"></div> <div class="photo-item photo-9"></div>
+                    <div class="photo-item photo-10"></div> <div class="photo-item photo-11"></div> <div class="photo-item photo-12"></div>
+                </div>
+                <div class="photo-cont-item animation-3">
+                    <div class="photo-item photo-13"></div> <div class="photo-item photo-14"></div> <div class="photo-item photo-15"></div>
+                    <div class="photo-item photo-16"></div> <div class="photo-item photo-17"></div> <div class="photo-item photo-18"></div>
+                    <div class="photo-item photo-13"></div> <div class="photo-item photo-14"></div> <div class="photo-item photo-15"></div>
+                    <div class="photo-item photo-16"></div> <div class="photo-item photo-17"></div> <div class="photo-item photo-18"></div>
+                </div>
+                <div class="photo-cont-item animation-1" style="margin-left: 80px;">
+                    <div class="photo-item photo-1"></div> <div class="photo-item photo-2"></div> <div class="photo-item photo-3"></div>
+                    <div class="photo-item photo-4"></div> <div class="photo-item photo-5"></div> <div class="photo-item photo-6"></div>
+                    <div class="photo-item photo-1"></div> <div class="photo-item photo-2"></div> <div class="photo-item photo-3"></div>
+                    <div class="photo-item photo-4"></div> <div class="photo-item photo-5"></div> <div class="photo-item photo-6"></div>
+                </div>
+                <div class="photo-cont-item animation-2" style="margin-left: 200px;">
+                    <div class="photo-item photo-7"></div> <div class="photo-item photo-8"></div> <div class="photo-item photo-9"></div>
+                    <div class="photo-item photo-10"></div> <div class="photo-item photo-11"></div> <div class="photo-item photo-12"></div>
+                    <div class="photo-item photo-7"></div> <div class="photo-item photo-8"></div> <div class="photo-item photo-9"></div>
+                    <div class="photo-item photo-10"></div> <div class="photo-item photo-11"></div> <div class="photo-item photo-12"></div>
+                </div>
+                <div class="photo-cont-item animation-3" style="margin-left: 40px;">
+                    <div class="photo-item photo-13"></div> <div class="photo-item photo-14"></div> <div class="photo-item photo-15"></div>
+                    <div class="photo-item photo-16"></div> <div class="photo-item photo-17"></div> <div class="photo-item photo-18"></div>
+                    <div class="photo-item photo-13"></div> <div class="photo-item photo-14"></div> <div class="photo-item photo-15"></div>
+                    <div class="photo-item photo-16"></div> <div class="photo-item photo-17"></div> <div class="photo-item photo-18"></div>
+                </div>
+            </div>
+
+            <div class="about-blur-overlay"></div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-12 relative z-10 p-6 rounded-xl bg-gray-900/50 backdrop-blur-sm">
+                        <div class="inline-block mb-3">
+                            <div class="text-xs text-cyan-400 tracking-widest uppercase mb-1">About US</div>
+                            <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Where Collaboration Meets Innovation.</div>
+                        </div>
+                        <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 mx-auto"></div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="relative group">
+                            <div class="absolute inset-0 bg-indigo-500/20 to-purple-500/20 rounded-xl blur-sm group-hover:bg-indigo-500/30 transition-all duration-500"></div>
+                            <div class="relative bg-gray-900/70 backdrop-blur-lg border border-indigo-500/20 p-6 rounded-xl shadow-xl group-hover:border-indigo-500/40 transition-all duration-300">
+                                <div class="flex flex-col">
+                                    <div class="font-medium text-xl text-white mb-3">Simplifying Complexity</div>
+                                    <p class="text-gray-400">Welcome to Data Operations NBS Latam. We focus on turning complexity into clarity by delivering dynamic solutions that empower your work. Our close collaboration with IT and use of Microsoft Power Platform and Office 365 help us simplify tasks and support better decision-making to our stakeholders.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative group">
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-xl blur-sm group-hover:bg-purple-500/30 transition-all duration-500"></div>
+                            <div class="relative bg-gray-900/70 backdrop-blur-lg border border-purple-500/20 p-6 rounded-xl shadow-xl group-hover:border-purple-500/40 transition-all duration-300">
+                                <div class="flex flex-col">
+                                    <div class="font-medium text-xl text-white mb-3">Building the Future Together</div>
+                                    <p class="text-gray-400">Every project strengthens our drive for innovation, pushing us to find smarter, more efficient ways of working. Innovation is built into our daily routine. At Data Operations Team, we focus on inspiring and supporting each other to make sure everyone grows and succeeds together.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="flex items-center relative py-12 section-visible">
+            <div class="container mx-auto px-6">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-12">
+                        <div class="inline-block mb-3">
+                            <div class="text-xs text-cyan-400 tracking-widest uppercase mb-1">What We Offer</div>
+                            <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Our Services</div>
+                        </div>
+                        <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 mx-auto"></div>
+                    </div>
+
+                    <div class="swiper services-swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
+                        <div class="swiper-wrapper pb-12" id="swiper-wrapper-adb49dea3d28109c8" aria-live="polite" style="transform: translate3d(0px, 0px, 0px); cursor: grab;">
+                            <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 4" data-swiper-slide-index="0" style="width: 314.667px; margin-right: 40px;">
+                                <div class="relative group">
+                                    <div class="absolute inset-0 bg-indigo-500/5 rounded-lg opacity-0 group-hover:opacity-100 blur-sm transition-opacity"></div>
+                                    <div class="bg-gradient-to-br from-gray-900 to-gray-950 border border-indigo-500/20 rounded-lg p-6 relative z-10 h-full group-hover:border-indigo-500/40 transition-all duration-300">
+                                        <div class="flex flex-col h-full">
+                                            <div class="flex items-center mb-4">
+                                                <div class="w-10 h-10 rounded bg-indigo-900/60 flex items-center justify-center mr-3 group-hover:bg-indigo-800/70 transition-colors">
+                                                    <svg class="w-5 h-5 text-indigo-300" fill="currentColor" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M13.501 16h-7.498c0 0-0 0-0 0-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 12.496c0 0 0 0 0 0 0 0.69 0.559 1.25 1.25 1.25 0 0 0 0 0 0h8.747v-13.746c0-0.69-0.559-1.25-1.25-1.25v0zM19.749 8.502h-7.498c0 0-0 0-0 0-0.69 0-1.25 0.559-1.25 1.25 0 0 0 0 0 0v0 5.623h2.499c1.035 0.001 1.873 0.84 1.874 1.874v13.746h5.623v-21.244c0-0.69-0.559-1.25-1.25-1.25v0zM27.247 2.254v27.492c0 0 0 0 0 0 0 0.69-0.559 1.25-1.25 1.25 0 0-0 0-0 0h-4.374v-21.244c-0.001-1.035-0.84-1.873-1.874-1.874h-2.499v-5.623c0-0 0-0 0-0 0-0.69 0.559-1.25 1.25-1.25h7.498c0.69 0 1.25 0.559 1.25 1.25 0 0 0 0 0 0v0z"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="font-medium text-lg text-indigo-300 group-hover:text-indigo-200 transition-colors">Power BI</div>
+                                            </div>
+                                            <p class="text-gray-400 mb-4">Our solutions built with Power BI convert complex business information into easy-to-understand dashboards and visual reports. You'll clearly see trends, monitor performance, and uncover insights quickly, enabling informed, strategic decisions without needing technical expertise.</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 4" data-swiper-slide-index="1" style="width: 314.667px; margin-right: 40px;">
+                                <div class="relative group">
+                                    <div class="absolute inset-0 bg-purple-500/5 rounded-lg opacity-0 group-hover:opacity-100 blur-sm transition-opacity"></div>
+                                    <div class="bg-gradient-to-br from-gray-900 to-gray-950 border border-purple-500/20 rounded-lg p-6 relative z-10 h-full group-hover:border-purple-500/40 transition-all duration-300">
+                                        <div class="flex flex-col h-full">
+                                            <div class="flex items-center mb-4">
+                                                <div class="w-10 h-10 rounded bg-purple-900/60 flex items-center justify-center mr-3 group-hover:bg-purple-800/70 transition-colors">
+                                                    <svg class="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M40 96L-2 48L40 0L82 48L40 96Z"></path>
+                                                        <path d="M53.999 0L97.999 48L53.999 96L34.4767 74.7029C33.0748 73.1736 33.0748 70.8264 34.4767 69.2971L51.5214 50.7029C52.9232 49.1736 52.9232 46.8264 51.5214 45.2971L34.4767 26.7029C33.0748 25.1736 33.0748 22.8264 34.4767 21.2971L53.999 0Z"></path>
+                                                        <path d="M73.0514 27.2167C74.6367 25.4872 77.3633 25.4872 78.9486 27.2167L98 48L78.9486 68.7833C77.3633 70.5128 74.6367 70.5128 73.0514 68.7833L57.7165 52.0543C55.6137 49.7604 55.6137 46.2396 57.7165 43.9457L73.0514 27.2167Z"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="font-medium text-lg text-purple-300 group-hover:text-purple-200 transition-colors">Power Apps</div>
+                                            </div>
+                                            <p class="text-gray-400 mb-4">We deliver custom-built applications powered by Power Apps, designed specifically around your unique needs and processes. Simplify your workflows, enhance productivity, and keep your teams connected without relying on lengthy development cycles.</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide" role="group" aria-label="3 / 4" data-swiper-slide-index="2" style="width: 314.667px; margin-right: 40px;">
+                                <div class="relative group">
+                                    <div class="absolute inset-0 bg-cyan-500/5 rounded-lg opacity-0 group-hover:opacity-100 blur-sm transition-opacity"></div>
+                                    <div class="bg-gradient-to-br from-gray-900 to-gray-950 border border-cyan-500/20 rounded-lg p-6 relative z-10 h-full group-hover:border-cyan-500/40 transition-all duration-300">
+                                        <div class="flex flex-col h-full">
+                                            <div class="flex items-center mb-4">
+                                                <div class="w-10 h-10 rounded bg-cyan-900/60 flex items-center justify-center mr-3 group-hover:bg-cyan-800/70 transition-colors">
+                                                    <svg class="w-5 h-5 text-cyan-300" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M61.21 10C62.35 10 63.43 10.48 64.19 11.33L94.61 45.33C95.97 46.85 95.97 49.15 94.61 50.67L64.19 84.67C63.43 85.52 62.35 86 61.21 86H3.95C0.49 86 -1.34 81.91 0.97 79.33L29 48L0.97 16.67C-1.34 14.09 0.49 10 3.95 10H61.21Z"></path>
+                                                        <path d="M-5 86L63 10L80 29L29 86H-5Z"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="font-medium text-lg text-cyan-300 group-hover:text-cyan-200 transition-colors">Power Automate</div>
+                                            </div>
+                                            <p class="text-gray-400 mb-4">With our automation solutions using Power Automate, routine, repetitive tasks become automated. We link your existing tools, automatically manage notifications, data synchronization, and approvals, giving your team more freedom to focus on meaningful and strategic activities.</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide" role="group" aria-label="4 / 4" data-swiper-slide-index="3" style="width: 314.667px; margin-right: 40px;">
+                               <div class="relative group">
+                                    <div class="absolute inset-0 bg-teal-500/5 rounded-lg opacity-0 group-hover:opacity-100 blur-sm transition-opacity"></div>
+                                    <div class="bg-gradient-to-br from-gray-900 to-gray-950 border border-teal-500/20 rounded-lg p-6 relative z-10 h-full group-hover:border-teal-500/40 transition-all duration-300">
+                                        <div class="flex flex-col h-full">
+                                            <div class="flex items-center mb-4">
+                                                <div class="w-10 h-10 rounded bg-teal-900/60 flex items-center justify-center mr-3 group-hover:bg-teal-800/70 transition-colors">
+                                                    <svg class="w-5 h-5 text-indigo-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.84647 16H4.66655C4.29842 16 4 15.7016 4 15.3335V8.66653C4 8.2984 4.29842 7.99998 4.66655 7.99998H6.89935C7.18444 5.32976 9.44458 3.25 12.1905 3.25C14.9532 3.25 17.2243 5.35539 17.4866 8.04926C19.4888 8.68036 20.9405 10.551 20.9405 12.762C20.9405 15.2708 19.0705 17.3428 16.6483 17.6603C16.2407 19.4305 14.6556 20.75 12.7619 20.75C10.5593 20.75 8.7738 18.9645 8.7738 16.7619C8.7738 16.5013 8.79878 16.2466 8.84647 16ZM15.9384 7.82184C15.59 6.07024 14.0444 4.75 12.1905 4.75C10.2742 4.75 8.68729 6.16053 8.41147 7.99998H11.3335C11.7016 7.99998 12 8.2984 12 8.66653V9.86164C12.8867 8.64079 14.3188 7.84163 15.9384 7.82184ZM12 14.3924V15.3335C12 15.7016 11.7016 16 11.3335 16H10.3926C10.3155 16.2402 10.2738 16.4962 10.2738 16.7619C10.2738 18.136 11.3878 19.25 12.7619 19.25C14.0866 19.25 15.17 18.2143 15.2458 16.909C15.2486 16.8604 15.25 16.8114 15.25 16.7619C15.25 15.3878 14.136 14.2738 12.7619 14.2738C12.5318 14.2738 12.3101 14.3048 12.1003 14.3625C12.0666 14.3718 12.0331 14.3818 12 14.3924ZM16.7004 16.1311C16.398 14.2283 14.7498 12.7738 12.7619 12.7738C12.6941 12.7738 12.6266 12.7755 12.5596 12.7789L12.5595 12.762C12.5595 10.8618 14.0999 9.32147 16 9.32147C16.2144 9.32147 16.4236 9.34098 16.626 9.37814C18.2272 9.67206 19.4405 11.0761 19.4405 12.762C19.4405 14.4221 18.2647 15.8076 16.7004 16.1311ZM6.46824 11.4918C6.56753 11.6612 6.70423 11.8057 6.86787 11.9142C7.08025 12.0538 7.306 12.1718 7.54178 12.2666C7.83816 12.3913 8.06255 12.4918 8.21493 12.568C8.347 12.6303 8.46766 12.7144 8.57189 12.8167C8.65569 12.8999 8.70239 13.0133 8.70141 13.1314C8.70519 13.3011 8.61530 13.459 8.46750 13.5424C8.25651 13.6527 8.01935 13.703 7.78178 13.688C7.52508 13.684 7.27030 13.6432 7.02520 13.5668C6.77927 13.4984 6.54720 13.3876 6.33948 13.2392V14.163C6.55679 14.2573 6.78493 14.3244 7.01872 14.3626C7.29560 14.4095 7.57600 14.4325 7.85682 14.4312C8.16981 14.436 8.48156 14.3907 8.78026 14.2971C9.03421 14.2185 9.25943 14.067 9.42789 13.8613C9.59689 13.6376 9.68258 13.362 9.67017 13.0819C9.67915 12.8562 9.62647 12.6323 9.51779 12.4342C9.41179 12.2596 9.26581 12.1125 9.09188 12.0053C8.86221 11.8665 8.62107 11.7476 8.37111 11.6499C8.34481 11.6369 8.31755 11.6259 8.28959 11.6171C8.03562 11.5122 7.84514 11.4281 7.71815 11.3649C7.60403 11.3116 7.50072 11.2377 7.41339 11.147C7.33945 11.07 7.29844 10.9673 7.29910 10.8605C7.29944 10.6846 7.40420 10.5256 7.56577 10.4559C7.77503 10.3539 8.00623 10.3049 8.23892 10.3135C8.45957 10.313 8.67947 10.3394 8.89378 10.3919C9.09129 10.4383 9.28027 10.5154 9.45378 10.6205V9.74433C9.05445 9.61434 8.63536 9.55566 8.21568 9.57099C7.89655 9.56756 7.57902 9.61673 7.27586 9.71651C6.41269 10.3746 6.32062 10.641 6.32919 10.9139C6.32409 11.1153 6.37204 11.3146 6.46824 11.4918Z"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="font-medium text-lg text-teal-300 group-hover:text-teal-200 transition-colors">SharePoint</div>
+                                            </div>
+                                            <p class="text-gray-400 mb-4">Our SharePoint-based solutions provide a centralized hub for managing documents, collaborating securely, and streamlining internal communications. Enjoy seamless collaboration, version control, and secure, reliable access to information keeping your teams informed, aligned, and productive.</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span></div>
+                        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-adb49dea3d28109c8"></div>
+                        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-adb49dea3d28109c8"></div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="relative py-12 section-hidden">
+            <!-- Title stays in a narrow container -->
+            <div class="max-w-5xl mx-auto px-6 text-center mb-12">
+                <div class="inline-block mb-3">
+                    <div class="text-xs text-cyan-400 tracking-widest uppercase mb-1">Our Work</div>
+                    <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Featured Projects</div>
+                </div>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 mx-auto"></div>
+            </div>
+
+            <!-- Carousel at full viewport width -->
+            <div class="mzaCarousel" id="portfolioCarousel" aria-roledescription="carousel" aria-label="Featured projects carousel">
+                <div class="mzaCarousel-viewport" tabindex="0">
+                    <div class="mzaCarousel-track">
+                        <article class="mzaCarousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 4">
+                            <div class="mzaCard" style="--mzaCard-bg:url('./Data Operations Team_files/eh76v2.png');">
+                                <header class="mzaCard-head mzaPar-1">
+                                    <h2 class="mzaCard-title">NBS Career App</h2>
+                                    <p class="mzaCard-kicker">Career Experience</p>
+                                </header>
+                                <p class="mzaCard-text mzaPar-2">Career-focused app covering Values, Compliance, Onboarding, and Career Opportunities with centralized information and intuitive usability.</p>
+                            </div>
+                        </article>
+                        <article class="mzaCarousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 4">
+                            <div class="mzaCard" style="--mzaCard-bg:url('./Data Operations Team_files/qcx68z.png');">
+                                <header class="mzaCard-head mzaPar-1">
+                                    <h2 class="mzaCard-title">Purina Dashboards</h2>
+                                    <p class="mzaCard-kicker">Sales Intelligence</p>
+                                </header>
+                                <p class="mzaCard-text mzaPar-2">Dashboard ecosystem for Purina teams, from activation tracking to material receiving, focused on operational efficiency and better decisions.</p>
+                            </div>
+                        </article>
+                        <article class="mzaCarousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 4">
+                            <div class="mzaCard" style="--mzaCard-bg:url('./Data Operations Team_files/18klug.png');">
+                                <header class="mzaCard-head mzaPar-1">
+                                    <h2 class="mzaCard-title">Manage Projects APP</h2>
+                                    <p class="mzaCard-kicker">Project Governance</p>
+                                </header>
+                                <p class="mzaCard-text mzaPar-2">Application for end-to-end project management, enabling control from discovery to launch with complete project visibility.</p>
+                            </div>
+                        </article>
+                        <article class="mzaCarousel-slide" role="group" aria-roledescription="slide" aria-label="4 of 4">
+                            <div class="mzaCard" style="--mzaCard-bg:url('./Data Operations Team_files/pinr3w.png');">
+                                <header class="mzaCard-head mzaPar-1">
+                                    <h2 class="mzaCard-title">Muro Virtual Dashboard</h2>
+                                    <p class="mzaCard-kicker">KPI Command Center</p>
+                                </header>
+                                <p class="mzaCard-text mzaPar-2">All-in-one KPI dashboard for dynamic analysis, process digitalization, reduced rework, and detailed market/store visibility.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="mzaCarousel-controls" aria-label="Carousel controls">
+                    <button class="mzaCarousel-prev" aria-label="Previous slide" type="button">&#8249;</button>
+                    <button class="mzaCarousel-next" aria-label="Next slide" type="button">&#8250;</button>
+                </div>
+                <div class="mzaCarousel-pagination" role="tablist" aria-label="Slide navigation"></div>
+                <div class="mzaCarousel-progress" aria-hidden="true"><span class="mzaCarousel-progressBar"></span></div>
+            </div>
+
+            <!-- Counters back in narrow container -->
+            <div class="max-w-5xl mx-auto px-6 mt-12">
+                <div class="bg-gray-900/70 backdrop-blur-lg border border-indigo-500/20 rounded-xl p-6 shadow-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                        <div class="flex flex-col items-center justify-center lg:border-r lg:border-gray-700 md:border-b md:border-gray-700 lg:border-b-0 pb-4 md:pb-8 lg:pb-0">
+                            <div class="counter-number text-4xl md:text-5xl font-bold gradient-text" data-target="700" data-suffix="+">700+</div>
+                            <div class="text-gray-400 text-sm md:text-base">Delivered Projects</div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center lg:border-r lg:border-gray-700 md:border-b md:border-gray-700 lg:border-b-0 pb-4 md:pb-8 lg:pb-0">
+                            <div class="counter-number text-4xl md:text-5xl font-bold gradient-text" data-target="40" data-suffix="+">40+</div>
+                            <div class="text-gray-400 text-sm md:text-base">Markets</div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center lg:border-r lg:border-gray-700 pb-4 lg:pb-0">
+                            <div class="counter-number text-4xl md:text-5xl font-bold gradient-text" data-target="95" data-suffix="%">95%</div>
+                            <div class="text-gray-400 text-sm md:text-base">NPS</div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="counter-number text-4xl md:text-5xl font-bold gradient-text" data-target="13" data-suffix="">13</div>
+                            <div class="text-gray-400 text-sm md:text-base">Business</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section id="testimonials" class="flex items-center relative py-12 section-hidden">
+          <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <div class="inline-block mb-3">
+                        <div class="text-xs text-cyan-400 tracking-widest uppercase mb-1">Client Feedback</div>
+                        <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Testimonials</div>
+                    </div>
+                    <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 mx-auto"></div>
+                </div>
+
+                <div class="grid gap-8 md:grid-cols-3">
+                  <!-- Card 1 -->
+                  <div class="card shadow-lg hover:shadow-xl transition">
+                    <p class="text-lg italic">“I just thank you for the good work of the DOT team, they understood the need and were able to develop an improvement which was extremely satisfactory.”</p>
+                    <div class="mt-4 flex flex-col items-center">
+                      <span class="text-xl font-semibold gradient-text">Zulma Ruiz</span>
+                      <span class="text-sm text-[var(--text-secondary)]]">S2P Analyst</span>
+                    </div>
+                  </div>
+                  <!-- Card 2 -->
+                  <div class="card shadow-lg hover:shadow-xl transition">
+                    <p class="text-lg italic">“The development was quick and effective, meeting my needs. In addition, the delivery was very well rated.”</p>
+                    <div class="mt-4 flex flex-col items-center">
+                      <span class="text-xl font-semibold gradient-text">Rafaela Mutter</span>
+                      <span class="text-sm text-[var(--text-secondary)]]">Procurement Specialist</span>
+                    </div>
+                  </div>
+                  <!-- Card 3 -->
+                  <div class="card shadow-lg hover:shadow-xl transition">
+                    <p class="text-lg italic">“Thank you for your attention throughout the development of this tool. Your attention and customer-focused approach were excellent.”</p>
+                    <div class="mt-4 flex flex-col items-center">
+                      <span class="text-xl font-semibold gradient-text">Tanya Botha</span>
+                      <span class="text-sm text-[var(--text-secondary)]]">She Coordinator</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </section>
+        <!-- END TESTIMONIALS SECTION -->
+<section id="contact" class="flex items-center relative py-12 section-hidden">
+            <div class="container mx-auto px-6">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-12">
+                        <div class="inline-block mb-3">
+                            <div class="text-xs text-cyan-400 tracking-widest uppercase mb-1">Get In Touch</div>
+                            <div class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">Contact Us</div>
+                        </div>
+                        <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-indigo-500 mx-auto"></div>
+                    </div>
+
+                    <div class="grid md:grid-cols-5 gap-8">
+                        <div class="md:col-span-5">
+                            <div class="bg-gray-900/70 backdrop-blur-lg border border-indigo-500/20 p-6 rounded-xl shadow-xl">
+                                <div class="text-xl font-medium text-white mb-4">Send us a message</div>
+                                <form id="contactForm">
+                                    <div class="mb-4">
+                                        <label for="name" class="block text-sm text-gray-400 mb-1">Name</label>
+                                        <input type="text" id="name" name="name" class="w-full bg-gray-800/50 border border-gray-700 focus:border-cyan-500 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-colors" placeholder=" Name ">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="service-request" class="block text-sm text-gray-400 mb-1">Which service would you like to request?</label>
+                                        <select id="service-request" name="service-request" class="w-full bg-gray-800/50 border border-gray-700 focus:border-cyan-500 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-colors">
+                                            <option value="Power BI">Power BI</option>
+                                            <option value="Power APPs">Power APPs</option>
+                                            <option value="Sharepoint">Sharepoint</option>
+                                            <option value="Power Automate">Power Automate</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="message" class="block text-sm text-gray-400 mb-1">Could you please share a few more details about the service you’re looking for?</label>
+                                        <textarea id="message" name="message" rows="4" class="w-full bg-gray-800/50 border border-gray-700 focus:border-cyan-500 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-colors resize-none" placeholder="Enter your message here..."></textarea>
+                                    </div>
+                                    <div class="relative group">
+                                        <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-600/50 to-purple-600/50 rounded-lg blur opacity-75 group-hover:opacity-100 transition-all duration-500"></div>
+                                        <button type="submit" id="sendMessageButton" class="w-full px-6 py-3 bg-gradient-to-r from-indigo-900/90 to-purple-900/90 rounded-lg text-white text-base font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-indigo-800/90 group-hover:to-purple-800/90 transition-all duration-300">
+                                            <span class="bg-gradient-to-r from-cyan-300 to-indigo-300 bg-clip-text text-transparent">Send Message</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END CONTACT SECTION -->
+    </main>
+
+    <footer class="bg-gray-900/80 backdrop-blur-lg border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <!-- FN icon removed from footer -->
+                    <!-- Keep Data Operations Team text -->
+                    <div class="text-lg font-medium bg-gradient-to-r from-indigo-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent flex items-center">
+                        Data Operations Team
+                    </div>
+                </div>
+
+            <div class="text-center text-gray-500 text-sm mt-8">
+                © <span id="copyright-year"></span> NBS Latam. All rights reserved.
+            </div>
+        </div>
+    </div></footer>
+
+    <script src="./Data Operations Team_files/swiper-bundle.min.js.download"></script>
+    <script src="./portfolio-carousel.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // Dynamic copyright year
+          const yearEl = document.getElementById('copyright-year');
+          if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+          const mainElement = document.querySelector('main');
+          const homeSection = document.getElementById('home');
+          const portfolioSection = document.getElementById('portfolio');
+
+          if (mainElement && homeSection && portfolioSection && homeSection.nextElementSibling !== portfolioSection) {
+            mainElement.insertBefore(portfolioSection, homeSection.nextElementSibling);
+          }
+
+          const navbar = document.getElementById('navbar');
+          const mobileMenuButton = document.getElementById('mobile-menu-button');
+          const mobileMenu = document.getElementById('mobile-menu');
+          const line1 = document.getElementById('line1');
+          const line2 = document.getElementById('line2');
+          const line3 = document.getElementById('line3');
+          const navLinks = document.querySelectorAll('.nav-link');
+          const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+          const sections = document.querySelectorAll('main > section');
+
+          mobileMenuButton.addEventListener('click', () => {
+            mobileMenuButton.classList.toggle('active');
+
+            if (mobileMenu.classList.contains('open')) {
+              mobileMenu.style.height = '0';
+              mobileMenu.classList.remove('open');
+              line1.style.transform = '';
+              line2.style.opacity = '1';
+              line3.style.transform = '';
+            } else {
+              mobileMenu.classList.add('open');
+              mobileMenu.style.height = `${mobileMenu.scrollHeight}px`;
+            }
+          });
+
+          mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+              mobileMenuButton.classList.remove('active');
+              mobileMenu.style.height = '0';
+              mobileMenu.classList.remove('open');
+              line1.style.transform = '';
+              line2.style.opacity = '1';
+              line3.style.transform = '';
+            });
+          });
+
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+              navbar.classList.add('scrolled');
+            } else {
+              navbar.classList.remove('scrolled');
+            }
+            highlightCurrentSection();
+          });
+
+          // Existing smooth scroll logic now works for the new links as well
+          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Calculate offset considering the fixed navbar height
+                    let offset = 70; // Default offset
+                    if (navbar) {
+                        offset = navbar.offsetHeight;
+                    }
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+
+                    // Optional: Add highlight effect to the target section
+                    targetElement.classList.add('section-highlight');
+                    setTimeout(() => {
+                      targetElement.classList.remove('section-highlight');
+                    }, 1000);
+                }
+            });
+          });
+
+          function highlightCurrentSection() {
+            let current = '';
+            const navbarHeight = navbar ? navbar.offsetHeight : 0; // Get navbar height dynamically
+
+            sections.forEach(section => {
+              // Adjust sectionTop calculation to account for navbar height
+              const sectionTop = section.offsetTop - navbarHeight - 1; // Subtract 1px for tolerance
+              const sectionHeight = section.offsetHeight;
+
+              // Check if the scroll position is within the section boundaries
+              if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+              }
+            });
+
+            navLinks.forEach(link => {
+              link.classList.remove('active', 'text-cyan-400');
+              link.classList.add('text-gray-300');
+              // Check if the link's href matches the current section's id
+              // Also ensure the link is not the specific contact button link in the navbar
+              if (link.getAttribute('href') === `#${current}` && !link.classList.contains('contact-btn')) {
+                link.classList.add('active', 'text-cyan-400');
+                link.classList.remove('text-gray-300');
+              }
+            });
+
+            // Handle the contact button specifically if needed, though it won't be 'active' in the same way as nav-links
+             const contactButtonNav = document.querySelector('#navbar .contact-btn');
+             if (contactButtonNav) {
+                 if (current === 'contact') {
+                     // Add a distinct style for the contact button when its section is active, if desired
+                     contactButtonNav.classList.add('active-contact-button'); // Add a custom class
+                 } else {
+                     contactButtonNav.classList.remove('active-contact-button');
+                 }
+             }
+
+
+            mobileNavLinks.forEach(link => {
+              link.classList.remove('text-cyan-400', 'bg-gray-800/50');
+              link.classList.add('text-gray-300');
+              if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('text-cyan-400', 'bg-gray-800/50');
+                link.classList.remove('text-gray-300');
+              }
+            });
+          }
+
+          // --- Contador JavaScript ---
+          const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.counter-number');
+                if (counters.length > 0) {
+                  counters.forEach(counter => {
+                    const target = +counter.dataset.target; // Pega o valor final do data-target
+                    const suffix = counter.dataset.suffix || ''; // Pega o sufixo do data-suffix
+                    const duration = 2000; // Duração da animação em ms
+                    let start = 0;
+                    const startTime = performance.now();
+
+                    function updateCounter(currentTime) {
+                      const elapsedTime = currentTime - startTime;
+                      const progress = Math.min(elapsedTime / duration, 1);
+                      const currentValue = Math.floor(progress * target);
+
+                      // Formata o número (opcional, para milhares, mas não necessário para estes números)
+                      // const formattedValue = currentValue.toLocaleString('pt-BR'); // Exemplo para usar ponto como separador de milhar
+
+                      counter.textContent = currentValue + suffix;
+
+                      if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                      } else {
+                        // Garante que o valor final exato seja exibido
+                        counter.textContent = target + suffix;
+                      }
+                    }
+
+                    // Prevent counter animation from running more than once.
+                    if (counter.dataset.animated !== 'true') {
+                        requestAnimationFrame(updateCounter);
+                        counter.dataset.animated = 'true'; // Marca como animado
+                    }
+                  });
+
+                  // Para de observar a seção de serviços depois de animar
+                  // observer.unobserve(entry.target); // Comentado para permitir re-observar se necessário
+                }
+
+                // Lógica existente para fade-in de outras seções
+                entry.target.classList.add('section-visible');
+                entry.target.classList.remove('section-hidden');
+              } else {
+                 // Opcional: Reseta a animação quando a seção sai da view, se desejar
+                 // entry.target.classList.remove('section-visible');
+                 // entry.target.classList.add('section-hidden');
+              }
+            });
+          }, { threshold: 0.1 }); // Ajuste o threshold conforme necessário
+
+          sections.forEach(section => {
+            section.classList.add('section-hidden');
+            counterObserver.observe(section); // Usa o mesmo observer para fade-in e contador
+          });
+          // --- Fim Contador JavaScript ---
+
+
+          // Initial call to set active link on page load
+          highlightCurrentSection();
+
+          // Add a small delay for the initial header animation
+          setTimeout(() => {
+            const headerText = document.querySelector('#home .text-6xl');
+            if (headerText) {
+              headerText.style.opacity = 1;
+              headerText.style.transform = 'translateY(0)';
+            }
+          }, 300);
+
+          const servicesSwiper = new Swiper('.services-swiper', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 24,
+            grabCursor: true,
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 24
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 40
+              }
+            },
+            on: {
+                resize: function () {
+                    this.update();
+                }
+            }
+          });
+
+          // --- START: New JavaScript for Contact Form Mailto ---
+          const contactFormButton = document.getElementById('sendMessageButton');
+          if (contactFormButton) {
+            contactFormButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                const nameInput = document.getElementById('name');
+                const serviceRequestSelect = document.getElementById('service-request');
+                const messageTextarea = document.getElementById('message');
+
+                const name = nameInput.value.trim();
+                const selectedService = serviceRequestSelect.value;
+                const messageContent = messageTextarea.value.trim();
+
+                if (!name) {
+                    alert("Please enter your name.");
+                    nameInput.focus();
+                    return;
+                }
+                // No need to check serviceRequestSelect for empty value as a <select> always has a value.
+                if (!messageContent) {
+                    alert("Please enter a message detailing your request.");
+                    messageTextarea.focus();
+                    return;
+                }
+
+                const mailtoRecipient = "Renan.Pessoa@br.nestle.com";
+                const mailtoSubject = `New ${selectedService} project request`;
+                const mailtoBody = `Hello! Hope you are doing well!\n\nI would like to request a ${selectedService} project, below you can see the description for what we need in the report :\n"${messageContent}"\n\nBest Regards\n${name}`;
+
+                const mailtoLink = `mailto:${mailtoRecipient}?subject=${encodeURIComponent(mailtoSubject)}&body=${encodeURIComponent(mailtoBody)}`;
+
+                window.location.href = mailtoLink;
+            });
+          }
+          // --- END: New JavaScript for Contact Form Mailto ---
+        });
+    </script>
+
+
+</body></html>
